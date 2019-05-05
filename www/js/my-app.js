@@ -150,9 +150,6 @@ function getRate(){
     // charge of handleing the request for us
     var http = new XMLHttpRequest();
 
-    // The url to send the request to. Notice that we're passing
-    // here some value of Latituted and longitude for the API 
-    // to process
     const url = 'http://apilayer.net/api/live?access_key=295fa4ae6b0ad82f2deec9e1a75a6eda&currencies=EUR&source=USD&format=1';
     // Opening the request. Remember, we will send
     // a "GET" request to the URL define above
@@ -445,7 +442,7 @@ function weatherCallback(position) {
               document.getElementById('weather/location').innerHTML = responseJSON.name;
               document.getElementById('weather/windspeed').innerHTML = '<br>' + responseJSON.wind.speed + 'km/s';
               document.getElementById('weather/humidity').innerHTML = '<br>' + responseJSON.main.humidity + '%';
-              document.getElementById('weather/cloudcover').innerHTML = '<br>' + responseJSON.clouds.all + '%';
+              document.getElementById('weather/cloudcover').innerHTML =  responseJSON.clouds.all + '%';
 
               //Function for converting UNIX time to Local Time
               function unixToTime(unix) {
