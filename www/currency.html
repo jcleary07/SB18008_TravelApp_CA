@@ -8,13 +8,16 @@
             <span class="ios-only">Back</span>
             </a>
         </div>
-        <div class="title">Currency Converter</div>
+       <!--  <div class="title">Currency Converter</div> -->
         </div>
     </div>
     <div class="page-content">
             <div class="content-block">
-                    
-        <div class="block-title">Converter Page</div>
+              <br>
+              <div class="f7-icons size-29">Welcome to your currency converter page</div>
+            </div>              
+        <div class="block-title"><i class="f7-icons size-29"> Enter the value you wish to convert below then
+          <br>select which currency you would like to convert to.</i></div>
         <div class="list no-hairlines-md">
                 <ul>
                   <li class="item-content item-input">
@@ -22,11 +25,7 @@
                       <i class="icon demo-list-icon"></i>
                     </div>
                     <div class="item-inner">
-                        <div class="Aligner">
-                      <div class="item-title item-label">Use this tab to convert from Euro to USD or USD to Euro
-                        <br> <br>  Simply enter the value you want to convert and chose the direction of currency using our apilayer.net api
-                      </div>
-                      </div>
+                      <div class="item-title item-label">Currency for conversion</div>
                       <div class="item-input-wrap">
                         <input type="number" id="/currency/input"> </input>
                         <span class="input-clear-button"></span>
@@ -36,16 +35,14 @@
                  </ul>
                 </div>
         <div class="block block-strong">
-            <div class ="buttontown">
+              
             <button class="col button button-outline button-raised"  onclick="convert()"> Convert from Dollar to Euro </button>
             <button class="col button button-outline button-raised"  onclick="convert2()"> Convert from Euro to Dollar </button>
-            </div>  
             <p>
             <div id="/currency/result"> Your conversion value is.. </div>
             </p>
-            <i class="f7-icons size-22">If NaN appears please click on submit button a second time</i>
+
         </div>
-        
     </div>
 </div>
 
