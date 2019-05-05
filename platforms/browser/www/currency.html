@@ -1,0 +1,45 @@
+<!-- We don't need a full layout in this file because this page will be parsed with Ajax. -->
+<div class="page">
+    <div class="navbar">
+        <div class="navbar-inner sliding">
+        <div class="left">
+            <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Back</span>
+            </a>
+        </div>
+        <div class="title">Currency Converter</div>
+        </div>
+    </div>
+    <div class="page-content">
+            <div class="content-block">
+                    <p>Page content goes here</p>
+        <div class="block-title">Converter Page</div>
+        <div class="list no-hairlines-md">
+                <ul>
+                  <li class="item-content item-input">
+                    <div class="item-media">
+                      <i class="icon demo-list-icon"></i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title item-label">Currency for conversion</div>
+                      <div class="item-input-wrap">
+                        <input type="number" id="/currency/input"> </input>
+                        <span class="input-clear-button"></span>
+                      </div>
+                    </div>
+                  </li>
+                 </ul>
+                </div>
+        <div class="block block-strong">
+              
+            <button class="col button button-outline button-raised"  onclick="convert()"> Convert from Dollar to Euro </button>
+            <button class="col button button-outline button-raised"  onclick="convert2()"> Convert from Euro to Dollar </button>
+            <p>
+            <div id="/currency/result"> Your conversion value is.. </div>
+            </p>
+        </div>
+    </div>
+</div>
+
+
