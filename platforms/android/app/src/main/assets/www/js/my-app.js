@@ -38,12 +38,9 @@ var mainView = app.views.create('.view-main');
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
-    getLocation();
-    // I ONLY NEED TO ACCESS THE FILE SYSTEM ONCE
-    // SO WE REQUEST THIS STRAIGHT AWAY AS SOON AS
-    // THE PROGRAM IS LOADING
-    tryingFile1();
-    tryingFile2();
+    getLocation();//trigger location on startup
+    tryingFile1();//access file system for photo
+    tryingFile2();//access file system for location
     
 });
 
@@ -59,19 +56,14 @@ $$(document).on('page:init', '.page[data-name="about"]', function (e) {
     console.log(e);
 })
 
-
-//function to get 
+//function to get Location GPS
 function getLocation()
 {
     navigator.geolocation.getCurrentPosition(geoCallback, onError);
 }
 
+//GPS Callback and init other functions
 function geoCallback (position){
-    /*var element = document.getElementById('gpslocation');
-    element.innerHTML = 'Longitude: ' + position.coords.longitude + '<br>' +
-                        'Latitude: ' + position.coords.latitude + '<br>' +
-                        'Timestamp ' + position.timestamp + '<br>';*/
-                        
       console.log('Longitude: ' + position.coords.longitude + '<br>' +
       'Latitude: ' + position.coords.latitude);
       initMap(position);
@@ -133,6 +125,8 @@ function openCage(position)
         document.getElementById('opencage').innerHTML =  "Country: " 
         + country + "<br>City: " + city +  "<br>County: " + county + 
         "<br>Currency: " + currency;
+
+
     }
 }
 
@@ -144,6 +138,7 @@ function readingInput(){
     input = document.getElementById('/currency/input').value;
 }
 
+//Currency conversion function
 function getRate(){
 
     // The XMLHttpRequest object, is the one in 
@@ -198,12 +193,21 @@ function convert2(){
 
 }
 
+/* **********************************************
+**
+** Storing location and picture
+**
+// ** - this module will aquire data and then it will pass to another module which will put the data on UI
+// ** ******************************************** */
+
+//function to store picture
 function tryingFile1(){
 
   window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemCallback1, onError);
   
 }
 
+//function to store location info
 function tryingFile2(){
 
   window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemCallback2, onError);
@@ -211,6 +215,7 @@ function tryingFile2(){
  
 }
 
+//picture callback
 function fileSystemCallback1(fs){
 
   // Name of the file I want to create
@@ -223,13 +228,7 @@ function fileSystemCallback1(fs){
 
 var fileSystemOptionals = { create: true, exclusive: false };
 
-// NOW, THE GETFILECALLBACK IS NOT GOING
-// TO CALL THE READ OR THE WRITE FUNCTIONS 
-// AUTOMATICALLY. THIS WILL BE DONE BY THE
-// BUTTON ON THE FRONT END
-// THE IMPORTANT PART HERE IS TO PUT THE 
-// FILE ENTRY SOMEWHERE FOR ALL OTHER FUNCTIONS
-// TO FIND
+//global variable
 var entry;
 function getFileCallback1(fileEntry){
   
@@ -237,9 +236,6 @@ function getFileCallback1(fileEntry){
 
 }
 
-// THE WRITEPIC FUNCTION DOES NOT NEED TO
-// RECEIVE THE FILE ENTRY BECAUSE IT CAN
-// ACCESS IT DIRECTLY IN THE GLOBAL SCOPE VARIABLE
 function writePic(dataObj) {
 
   // THIS IS IMPORTANT, THIS IS THE GLOBAL VARIABLE
@@ -259,12 +255,9 @@ function writePic(dataObj) {
   });
 }
 
-// TO OPEN THE PICTURE, AGAIN WE DON'T NEED TO
-// PASS THE FILE ENTRY, BECAUSE EVERYONE CAN SEE
-// THE FILE ENTRY IN THE GLOBAL VARIABLE
+//show picture
 function readPic() {
 
-  // AND AGAIN, I USE THE GLOBAL VARIBLE EVERYONE IS SEEING
   entry.file(function (file) {
       
       // Create the reader
@@ -290,7 +283,7 @@ function onError(msg){
   console.log(msg);
 }
 
-// NOW, TAKING THE PICTURE IS THE SAME
+// take picture
 function pics(){
 navigator.camera.getPicture(cameraCallback, onError,{correctOrientation: true});
 }
@@ -306,11 +299,10 @@ function cameraCallback(imageData) {
 
 }
 
-//next function starts HERE!!!!!!
+//next function to store location starts HERE!!!!!!
 function fileSystemCallback2(fs){
 
   // Name of the file I want to create
-  // IN THIS CASE A JPG FILE!!
   var fileToCreate = "locations.txt";
 
   // Opening/creating the file
@@ -319,7 +311,7 @@ function fileSystemCallback2(fs){
 
 var fileSystemOptionals = { create: true, exclusive: false };
 
-//creat global variable to store the location entry
+//create global variable to store the location entry
 var locationentry;
 function getFileCallback2(fileEntry){
   
@@ -327,9 +319,7 @@ function getFileCallback2(fileEntry){
 
 }
 
-// THE writeLocation FUNCTION DOES NOT NEED TO
-// RECEIVE THE FILE ENTRY BECAUSE IT CAN
-// ACCESS IT DIRECTLY IN THE GLOBAL SCOPE VARIABLE
+
 function writeLocation(dataObj) {
 
   // THIS IS IMPORTANT, THIS IS THE GLOBAL VARIABLE
@@ -367,7 +357,7 @@ function readLocation() {
           console.log("Successful file read: " + this.result);
           console.log("file path: " + locationentry.fullPath);
 
-          // AND PUT THE RESULT IN THE FRONT END
+          // AND PUT THE RESULT IN THE FRONT END as alert
           //document.getElementById('/index/display').src = reader.result;
           alert(reader.result);
       };
@@ -379,21 +369,16 @@ function onError(msg){
   console.log(msg);
 }
 
-// NOW, TAKING THE PICTURE IS THE SAME
+// storing location
 function storeLocation(){
   navigator.geolocation.getCurrentPosition(storePositionCallback, onError);
 }
 
-// BUT THE CALLBACK, INSTEAD OF DISPLAYING THE PIC
-// IS GOING TO SAVE IT USING THE WRITEPIC FUNCTION
-// AND PASSING A BLOB OBJECT!
+//take the information provided by opencage API and dispalyed in html
 function storePositionCallback() {
-  var input = document.getElementById('opencage').innerHTML;
-
-  //var dataObj = new Blob([input], { type: 'text/plain' });
-  
-  
-  writeLocation(input);
+  var input = document.getElementById('opencage').textContent;
+   var dataObj = new Blob([input], { type: 'text/plain' });
+  writeLocation(dataObj);
 
 }
 
