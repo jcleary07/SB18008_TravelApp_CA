@@ -1,18 +1,23 @@
 {
   "name": "com.phonegap.travelappjc",
   "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "displayName": "Travel_App",
+  "dependencies": {
+    "cordova-android": "^7.1.4",
+    "cordova-browser": "5.0.4",
+    "cordova-plugin-console": "^1.1.0",
+    "cordova-plugin-geolocation": "^4.0.1",
+    "cordova-plugin-googlemaps": "2.5.3"
+  },
   "cordova": {
-    "platforms": [
-      "browser"
-    ],
     "plugins": {
       "cordova-plugin-geolocation": {}
-    }
-  },
-  "dependencies": {
-    "cordova-android": "7.1.4",
-    "cordova-browser": "5.0.4",
-    "cordova-plugin-geolocation": "^4.0.1"
+    },
+    "platforms": [
+      "browser"
+    ]
   }
 }

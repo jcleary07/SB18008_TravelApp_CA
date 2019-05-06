@@ -135,7 +135,7 @@
 
   <!-- android -->
   <platform name="android">
-    <preference name="API_KEY_FOR_ANDROID"/>
+    <preference name="AIzaSyBF3oiadP9uhVeuWb3UX946pPfm_NMVdMo"/>
     <info>
       Official document https://github.com/mapsplugin/cordova-plugin-googlemaps-doc/blob/master/v2.3.0/README.md Please consider to buy a beer for us 🍺 https://github.com/mapsplugin/cordova-plugin-googlemaps#buy-us-a-beer
     </info>
@@ -300,7 +300,7 @@
   <!-- ios -->
   <platform name="ios">
 
-    <preference name="API_KEY_FOR_IOS"/>
+    <preference name="AIzaSyBF3oiadP9uhVeuWb3UX946pPfm_NMVdMo"/>
     <preference name="LOCATION_WHEN_IN_USE_DESCRIPTION" default="This app wants to get your location while this app runs only."/>
     <preference name="LOCATION_ALWAYS_USAGE_DESCRIPTION" default="This app wants to get your location always, even this app runs in background."/>
 
