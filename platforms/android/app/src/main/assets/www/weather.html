@@ -1,0 +1,65 @@
+<!-- We don't need a full layout in this file because this page will be parsed with Ajax. -->
+<div class="page">
+    <div class="navbar">
+        <div class="navbar-inner sliding">
+        <div class="left">
+            <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Back</span>
+            </a>
+        </div>
+        <div class="title">Local Weather</div>
+        </div>
+    </div>
+<div class="page-content">
+    <div class="content-block">
+        <div class="block-title"></div>
+        <div class="f7-icons size-29">
+            <div id="weather">Find out the local weather status</div>        
+            <div class="block-title"><i class="f7-icons size-29"> Click on button below to access
+             <br>weather data using our OpenWeather API.</i></div>
+            <div class="block block-strong">
+                <button class="col button button-outline button-raised" onclick= getWeather()> get weather </button>
+                <!--<div id="weather/location"> Your weather value is.. </div>-->
+                <!--Starts here-->
+                <div class="row justify-content-around">
+                    <div class="col-10 col-lg-5 tempBox text-center">
+                        <i class="icon ion-location"></i>
+                        <p><span id="weather/location" >Current Location</span></p>
+                        <p class="m0"><span id="weather/description">Description</span></p>
+                        <p class="m0"><span id="weather/temp">-</span><span class="unit">C</span></p>
+                        <div class="row tempBoxSubInfo">
+                            <div class="col">
+                                <p><i class="wi wi-windy"></i>
+                                    Wind Speed: <span id="weather/windspeed"> - </span> 
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p><i class="wi wi-humidity"></i>
+                                    Humidity: <span id="weather/humidity">- </span> 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-6 dashboard text-center">
+                        <div class="row sunTimes justify-content-center">
+                            <div class="col sunrise">
+                                <p><i class="wi wi-sunrise"></i> <span id="weather/sunrise"> - </span></p>
+                            </div>
+                            <div class="col sunset">
+                                <p><i class="wi wi-sunset"></i> <span id="weather/sunset"> - </span></p>
+                            </div>
+                            <div class="col">
+                                <p><i class="wi wi-day-cloudy-high"></i> <span id="weather/cloudcover"> - </span></p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!--ENds here-->
+            </div>
+        </div>
+    </div>
+    
+    
